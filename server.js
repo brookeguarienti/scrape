@@ -1,5 +1,8 @@
 // require dependencies
 var express = require("express");
+var mongoose = require("mongoose");
+var expressHandlebars = require("express-handlebars");
+var bodyParser = require("body-parser");
 
 // set up our port to be either the host's designated or 3040
 var PORT = process.env.PORT || 3040;
@@ -11,10 +14,36 @@ var app = express();
 var router = express.Router();
 
 // desifnate our public dolfer as a static directory 
-app.use(express.static(_dirname + "/public"));
+app.use(express.static(__dirname + "/public"));
+
+// connect handlebars to our express app
+app.engine("handlebars", expressHandlebars({
+  defaultLayout: "main"
+}));
+app.set("view engine", "handlebars");
+
+//use bodyParser in or app 
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 // have every request go through our router middleware
 app.use(router);
+
+//if deployed, use the deployed database. otherwise use the local mongoHeadlines database
+var db = process.env.MONGO_URI || "mongodb://localhost/mongoHeadlines";
+
+// connect mongoose to our database
+mongoose.connect(db, function(error) {
+  //log any errors conencting with mongoose
+  if (error) {
+    console.log(error);
+  }
+  // or log a success msg
+  else {
+    console.log("mongoose connection is successful");
+  }
+});
 
 // listen on the port
 app.listen(PORT,  function(){
