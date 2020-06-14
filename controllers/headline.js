@@ -13,7 +13,7 @@ module.exports = {
                 articles[i].date = makeDate();
                 articles[i].saved = false;
             }
-            headline.collection.insertMany(articles, {ordered:false}, function(err, docs){
+            Headline.collection.insertMany(articles, {ordered:false}, function(err, docs){
                 cb(err, docs);
             });
         });
