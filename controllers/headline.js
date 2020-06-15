@@ -13,7 +13,9 @@ module.exports = {
                 articles[i].date = makeDate();
                 articles[i].saved = false;
             }
-            Headline.collection.insertMany(articles, {ordered:false}, function(err, docs){
+            // console.log(articles);
+            
+            headline.collection.insertMany(articles, {ordered:false}, function(err, docs){
                 cb(err, docs);
             });
         });
@@ -22,16 +24,25 @@ module.exports = {
         headline.remove(query, cb);
     },
     get: function(query, cb) {
+        if (query.saved && query.saved === "false"){
+            query.saved = false
+        }
+        if (query.saved && query.saved === "true"){
+            query.saved = true
+        }
         headline.find(query)
         .sort({
             _id: -1
         })
         .exec(function(err, doc) {
+            
             cb(doc);
         });
     },
     update: function(query, cb) {
-        Headline.update({_id: query._id}, {
+        console.log();
+        
+        headline.update({_id: query._id}, {
             $set: query
         }, {}, cb);
     }

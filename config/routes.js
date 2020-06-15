@@ -8,7 +8,7 @@ var notesController = require("../controllers/note");
 
 module.exports = function(router) {
     //this route will render the homepage
-    router.get("/scrape", function(req, res){
+    router.get("/", function(req, res){
         res.render("home");
     });
     // this route will render saved handlebars
@@ -30,6 +30,7 @@ module.exports = function(router) {
             }
         });
     });
+
     router.get("/api/headlines", function(req, res){
         var query = {};
         if(req.query.saved){
@@ -49,6 +50,8 @@ module.exports = function(router) {
     });
 
     router.patch("/api/headlines", function(req, res){
+        console.log(req.body);
+        
         headlinesController.update(req.body, function(err, data){
             res.json(data);
         });
