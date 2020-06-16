@@ -34,8 +34,8 @@ $(document).ready(function () {
         "<div class='panel panel-default'>",
         "<div class='panel-heading'>",
         "<h3>",
-        article.headline,
-        "<a class='btn btn-success save'>",
+        article.headline ,
+        " <a class='btn btn-success save'>",
         "Save Article",
         "</a>",
         "</h3>",
@@ -73,6 +73,8 @@ $(document).ready(function () {
   function articleSave() {
     var articleToSave = $(this).parents(".panel").data();
     articleToSave.saved = true;
+    // console.log(articleToSave);
+    
   
     
     $.ajax({
@@ -81,8 +83,9 @@ $(document).ready(function () {
       data: articleToSave,
     }).then(function (data) {
       if (data.ok) {
-        init();
+        init();        
       }
+    //   console.log("data: " + data);
     });
   }
 

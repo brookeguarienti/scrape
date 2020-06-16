@@ -8,7 +8,7 @@ var scrape = function(cb) {
 
         var articles = [];
 
-        $(".gs-c-promo").each(function(i, element){
+        $(".gs-c-promo").each(function(){
             // console.log(this);
             
             var head = $(this).find(".gs-c-promo-heading")[0];
@@ -21,8 +21,8 @@ var scrape = function(cb) {
             
 
             if(head && sum){
-                var headNeat = head.replace(/(\r\n|\n|\r|\t|s+)/gm, " ").trim();
-                var sumNeat = sum.replace(/(\r\n|\n|\r|\t|s+)/gm, " ").trim();
+                var headNeat = head
+                var sumNeat = sum
 
                 var dataToAdd = {
                     headline: headNeat,

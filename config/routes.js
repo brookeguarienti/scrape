@@ -13,7 +13,8 @@ module.exports = function(router) {
     });
     // this route will render saved handlebars
     router.get("/saved", function(req, res) {
-        res.render("saved");
+            res.render("saved", {data: true});
+       
     });
 
     router.get("/api/fetch", function(req,res){
@@ -50,10 +51,10 @@ module.exports = function(router) {
     });
 
     router.patch("/api/headlines", function(req, res){
-        console.log(req.body);
-        
         headlinesController.update(req.body, function(err, data){
             res.json(data);
+            console.log(data.ok);
+            
         });
     });
 

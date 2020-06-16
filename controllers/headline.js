@@ -40,10 +40,11 @@ module.exports = {
         });
     },
     update: function(query, cb) {
-        console.log();
         
         headline.update({_id: query._id}, {
             $set: query
         }, {}, cb);
+        console.log(query);
+        
     }
 }
