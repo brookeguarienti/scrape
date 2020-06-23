@@ -1,5 +1,5 @@
-// bring scrape function from scripts 
-var scrape = require("../scripts/scrape");
+// // bring scrape function from scripts 
+// var scrape = require("../scripts/scrape");
 
 // bring headlines and notes from controller
 var headlinesController = require("../controllers/headline");
