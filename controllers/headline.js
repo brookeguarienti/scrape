@@ -3,7 +3,7 @@ var scrape = require("../scripts/scrape");
 var makeDate = require("../scripts/date");
 
 // bring in headline and note mongoose
-var headline = require("../models/Headline");
+var headline = require("../models/headline");
 
 module.exports = {
     fetch: function(cb) {
@@ -20,9 +20,11 @@ module.exports = {
             });
         });
     },
+
     delete: function(query, cb) {
         headline.remove(query, cb);
     },
+
     get: function(query, cb) {
         if (query.saved && query.saved === "false"){
             query.saved = false
@@ -35,10 +37,12 @@ module.exports = {
             _id: -1
         })
         .exec(function(err, doc) {
-            
+            console.log("doc: " + doc);
             cb(doc);
         });
+        
     },
+
     update: function(query, cb) {
         
         headline.update({_id: query._id}, {

@@ -3,6 +3,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 
 var scrape = function(cb) {
+    
     request("https://www.bbc.com/news", function(err, res, body){
         var $ = cheerio.load(body);
 

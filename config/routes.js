@@ -16,7 +16,7 @@ module.exports = function(router) {
             res.render("saved", {data: true});
        
     });
-
+    // this route will display whether there are no new articles or the number of new articles 
     router.get("/api/fetch", function(req,res){
         headlinesController.fetch(function(err, docs){
             if(!docs || docs.insertedCount === 0 ){
@@ -31,7 +31,7 @@ module.exports = function(router) {
             }
         });
     });
-
+    // this route will gather the saved query 
     router.get("/api/headlines", function(req, res){
         var query = {};
         if(req.query.saved){
@@ -53,8 +53,6 @@ module.exports = function(router) {
     router.patch("/api/headlines", function(req, res){
         headlinesController.update(req.body, function(err, data){
             res.json(data);
-            console.log(data.ok);
-            
         });
     });
 
